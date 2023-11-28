@@ -1,8 +1,11 @@
 #!/usr/bin/env ruby
-if ARGV.length > 0
-    res = ARGV[0].scan(/\[from:([^\]]*)\]\s*\[to:\s*([^\]]+)\]\s*\[flags:\s*([^\]]+)/)
-    for r in res
-        print "%s,%s,%s" % r
-    end
-    puts
-end
+
+Format = ARGV[0].scan(/from:(.\w+)|to:(.\w+)|flags:([0-9:-]+)/)
+List = [Format[0].compact, Format[1].compact, Format[2].compact]
+puts List.join(',')
+
+#OR
+
+#puts ARGV[0]
+#  .scan(/(?<=from:|to:|flags:).*?(?=\])/)
+# .join(',')
